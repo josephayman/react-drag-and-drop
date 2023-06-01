@@ -1,22 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import Klasse from "./components/Klasse";
+import Gruppe from "./components/Gruppe";
+import "./App.css";
 
 function App() {
+  const groupCount = 6; // The number of groups you want to create
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>Klasse 6A</p>
+        <Klasse />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            width: "100%",
+            marginTop: "40px",
+          }}
+          >
+          {Array.from({ length: groupCount }, (_, i) => (
+            <Gruppe key={i} name={`Gruppe ${i + 1}`} />
+          ))}
+        </div>
       </header>
     </div>
   );
