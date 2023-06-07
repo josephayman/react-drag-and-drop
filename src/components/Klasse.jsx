@@ -1,56 +1,26 @@
-// Make a list of student names and their picture paths
-
 import React from "react";
+import "../styles/Klasse.css";
 
-function Klasse() {
-  // Make a list of student names and their picture paths
-  const students = {
-    kari: "logo192.png",
-    ole: "logo192.png",
-    per: "logo192.png",
-    pål: "logo192.png",
-    nina: "logo192.png",
-    karin: "logo192.png",
-  };
+function Klasse({students}) {
 
   const handleDragStart = (e, student) => {
-    e.dataTransfer.setData("student", student);
+    e.dataTransfer.setData("student", JSON.stringify({ name: student, img: students[student] }));
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "white",
-      }}
-    >
+    <div className="klasse-container">
       {Object.keys(students).map((student) => (
         <div
           draggable
           onDragStart={(e) => handleDragStart(e, student)}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            margin: "10px",
-          }}
+          key={student}
+          className="student-container"
         >
           <img
-            src={students[student]}
+            src={"/icons/" + students[student]}
             alt={student}
-            style={{ width: "50px", height: "50px", borderRadius: "50%" }}
           />
-          <p
-            style={{
-                textAlign: "center",
-                width: "100px",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-                }}
-          >{student}</p>
+          <p>{student}</p>
         </div>
       ))}
     </div>
