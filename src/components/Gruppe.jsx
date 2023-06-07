@@ -14,6 +14,12 @@ const Gruppe = ({ name, removeStudent }) => {
     removeStudent(student.name);
   };
 
+  const handleClick = (studentName) => {
+    setGroup((oldGroup) =>
+      oldGroup.filter((student) => student.name !== studentName)
+    );
+  };
+
   return (
     <div className="gruppe-wrapper">
       <h3>{name}</h3>
@@ -23,13 +29,17 @@ const Gruppe = ({ name, removeStudent }) => {
         className="gruppe-container"
       >
         {group.map((student) => (
-          <div>
+          <div
+            className="student-element"
+            onClick={() => handleClick(student.name)}
+          >
             <img
-              src={"/icons/"+student.img}
+              src={"/icons/" + student.img}
               alt={student.name}
               style={{ width: "50px", height: "50px", borderRadius: "50%" }}
             />
             <p>{student.name}</p>
+            <div className="remove-message">Fjern</div>
           </div>
         ))}
       </div>
