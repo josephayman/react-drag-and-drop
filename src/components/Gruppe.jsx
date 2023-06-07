@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/Gruppe.css";
 
-const Gruppe = ({ name, removeStudent }) => {
+const Gruppe = ({ name, addStudentToGroup, removeStudentFromGroup }) => {
   const [group, setGroup] = useState([]);
 
   const handleDragOver = (e) => {
@@ -11,14 +11,14 @@ const Gruppe = ({ name, removeStudent }) => {
   const handleDrop = (e) => {
     const student = JSON.parse(e.dataTransfer.getData("student"));
     setGroup((oldGroup) => [...oldGroup, student]);
-    removeStudent(student.name);
+    addStudentToGroup(student.name);
   };
 
   const handleClick = (studentName) => {
-    setGroup((oldGroup) =>
-      oldGroup.filter((student) => student.name !== studentName)
-    );
+    setGroup((oldGroup) => oldGroup.filter(student => student.name !== studentName));
+    removeStudentFromGroup(studentName);
   };
+
 
   return (
     <div className="gruppe-wrapper">

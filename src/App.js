@@ -8,30 +8,36 @@ function App() {
   const groupCount = 6; // The number of groups you want to create
 
   const [students, setStudents] = useState({
-    Kari: "icon1.png",
-    Ole: "icon2.png",
-    Per: "icon3.png",
-    Pål: "icon4.png",
-    Nina: "icon5.png",
-    Kjell: "icon6.png",
-    Jon: "icon1.png",
-    Rona: "icon2.png",
-    Will: "icon3.png",
-    Mona: "icon4.png",
-    Siv: "icon5.png",
-    Svein: "icon6.png",
-    Inge: "icon1.png",
-    Borge: "icon2.png",
-    Klaus: "icon3.png",
-    Erik: "icon4.png",
+    Kari: { img: "icon1.png", inGroup: false },
+    Ole: { img: "icon2.png", inGroup: false },
+    Per: { img: "icon3.png", inGroup: false },
+    Pål: { img: "icon4.png", inGroup: false },
+    Nina: { img: "icon5.png", inGroup: false },
+    Kjell: { img: "icon6.png", inGroup: false },
+    Jon: { img: "icon1.png", inGroup: false },
+    Rona: { img: "icon2.png", inGroup: false },
+    Will: { img: "icon3.png", inGroup: false },
+    Mona: { img: "icon4.png", inGroup: false },
+    Siv: { img: "icon5.png", inGroup: false },
+    Svein: { img: "icon6.png", inGroup: false },
+    Inge: { img: "icon1.png", inGroup: false },
+    Borge: { img: "icon2.png", inGroup: false },
+    Klaus: { img: "icon3.png", inGroup: false },
+    Erik: { img: "icon4.png", inGroup: false },
   });
 
-  const removeStudent = (student) => {
-    setStudents((prevStudents) => {
-      const newStudents = { ...prevStudents };
-      delete newStudents[student];
-      return newStudents;
-    });
+  const addStudentToGroup = (student) => {
+    setStudents((prevStudents) => ({
+      ...prevStudents,
+      [student]: { ...prevStudents[student], inGroup: true },
+    }));
+  };
+
+  const removeStudentFromGroup = (student) => {
+    setStudents((prevStudents) => ({
+      ...prevStudents,
+      [student]: { ...prevStudents[student], inGroup: false },
+    }));
   };
 
   return (
@@ -69,7 +75,8 @@ function App() {
               <Gruppe
                 key={i}
                 name={`Gruppe ${i + 1}`}
-                removeStudent={removeStudent}
+                addStudentToGroup={addStudentToGroup}
+                removeStudentFromGroup={removeStudentFromGroup}
               />
             ))}
           </div>
