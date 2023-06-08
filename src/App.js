@@ -7,6 +7,7 @@ import "./styles/App.css";
 function App() {
   const groupCount = 6; // The number of groups you want to create
 
+  // Objektet students inneholder alle elevene i klassen.
   const [students, setStudents] = useState({
     Kari: { img: "icon1.png", inGroup: false },
     Ole: { img: "icon2.png", inGroup: false },
@@ -26,6 +27,10 @@ function App() {
     Erik: { img: "icon4.png", inGroup: false },
   });
 
+  // Funksjonene addStudentToGroup og removeStudentFromGroup brukes for å endre
+  // om en elev er i en gruppe eller ikke. Disse funksjonene blir sendt som props
+  // til Gruppe-komponenten.
+
   const addStudentToGroup = (student) => {
     setStudents((prevStudents) => ({
       ...prevStudents,
@@ -43,8 +48,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        {/* Navbar på toppen */}
         <Nav />
       </header>
+
+      {/* Hero-seksjonen */}
       <div className="Hero">
         <h1>Klasser</h1>
         <div className="hero-utils">
@@ -65,8 +73,11 @@ function App() {
           </div>
         </div>
         <p>Klasse 6A</p>
+        {/* Klasse-komponent som tar imot student lista */}
         <Klasse students={students} />
       </div>
+
+      {/* Grupperings-seksjonen */}
       <div className="section">
         <div className="grupperinger-wrapper">
           <h2>Grupperinger</h2>
@@ -74,7 +85,7 @@ function App() {
             {Array.from({ length: groupCount }, (_, i) => (
               <Gruppe
                 key={i}
-                name={`Gruppe ${i + 1}`}
+                name={`Gruppe ${i + 1}`} // i + 1 for å unngå gruppe 0
                 addStudentToGroup={addStudentToGroup}
                 removeStudentFromGroup={removeStudentFromGroup}
               />
@@ -82,6 +93,7 @@ function App() {
           </div>
         </div>
       </div>
+      {/* Siste seksjon */}
       <div className="section">
         <div className="stats-wrapper">
           <h2>Klassens progresjon</h2>

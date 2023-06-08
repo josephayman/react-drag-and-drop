@@ -5,7 +5,7 @@ const Nav = () => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <img src="logo.png" alt="Logo" /> {/* Replace "logo.png" with your logo path */}
+        <img src="logo.png" alt="Logo" />
       </div>
       <div className="burger-menu">
         <div></div>
@@ -13,7 +13,7 @@ const Nav = () => {
         <div></div>
       </div>
     </nav>
-  )
+  );
 };
 
 export default Nav;
